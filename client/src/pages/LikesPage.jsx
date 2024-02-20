@@ -1,6 +1,5 @@
 import { FaHeart } from "react-icons/fa";
 
-
 const LikesPage = () => {
   return (
     <div className='relative overflow-x-auto shadow-md rounded-lg px-4'>
