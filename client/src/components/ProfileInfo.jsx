@@ -119,7 +119,7 @@ const ProfileInfo = () => {
 
       {/* Number of public repos */}
       <div className='flex items-center gap-2 bg-morphism rounded-lg p-2 flex-1 min-w-24'>
-        <RiGitRepositoryFill className='w-5 h-5 text-blue-800' />
+        <RiGitRepositoryFill className='w-5 h-5 text-blue-800 ' />
         <p className='text-xs'>Public repos: {userProfile?.public_repos}</p>
       </div>
 

@@ -1,11 +1,14 @@
-
+import Repo from './Repo'
 
 const Repos = () => {
   return (
-    <div className={`lg:w-2/3 w-full bg-glass rounded-lg px-8 py-6`}>
+    <div className={`lg:w-2/3 w-full bg-morphism rounded-lg px-8 py-6`}>
 			<ol className='relative border-s border-gray-200'>
-				REPO
-				REPO
+				<Repo />
+				<Repo />
+				<Repo />
+				<Repo />
+				<Repo />
 			</ol>
 		</div>
   )

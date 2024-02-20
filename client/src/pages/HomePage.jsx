@@ -2,6 +2,7 @@ import Search from '../components/Search'
 import SortRepo from '../components/SortRepo'
 import ProfileInfo from '../components/ProfileInfo'
 import Repos from '../components/Repos'
+import Spinner from '../components/Spinner'
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
     <div className='flex gap-4 flex-col lg:flex-row justify-center items-start'>
       <ProfileInfo />
       <Repos />
+      <Spinner />
     </div>
   </div>
   )

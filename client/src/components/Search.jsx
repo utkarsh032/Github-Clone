@@ -13,7 +13,7 @@ const Search = () => {
 				<input
 					type='search'
 					id='default-search'
-					className='block w-full p-4 ps-10 text-sm rounded-lg bg-glass focus:ring-blue-500 focus:border-blue-500 bg-transparent focus:bg-transparent'
+					className='block w-full p-4 ps-10 text-sm rounded-lg bg-morphism focus:ring-blue-500 focus:border-blue-500 bg-transparent focus:bg-transparent'
 					placeholder='i.e. github'
 					required
 				/>
