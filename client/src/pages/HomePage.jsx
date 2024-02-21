@@ -13,20 +13,20 @@ const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const [sortTypes, setSortTypes] = useState('forks');
 
-  const getUserProfileAndRepos = useCallback(async () => {
+  const getUserProfileAndRepos = useCallback(async (username="utkarsh032") => {
     setLoading(true);
     try {
-      const userRes = await fetch('https://api.github.com/users/utkarsh032');
+      const userRes = await fetch(`https://api.github.com/users/${username}`);
       const userProfile = await userRes.json();
       setUserProfile(userProfile);
-
       const repoRes = await fetch(userProfile.repos_url);
       const repos = await repoRes.json();
       setRepos(repos);
       console.log(userProfile);
       console.log(repos);
+    return {userProfile, repos};
     } catch (error) {
-      toast.error(error.message);
+      toast.error('username is not valid');
     } finally {
       setLoading(false);
     }
@@ -36,17 +36,32 @@ const HomePage = () => {
     getUserProfileAndRepos();
   }, [getUserProfileAndRepos]);
 
+const onSearch = async (e,username)=>{
+  e.preventDefault();
+
+  setLoading(true);
+  setRepos([])
+  setUserProfile(null)
+
+  const {userProfile,repos}= await getUserProfileAndRepos(username)
+
+  setUserProfile(userProfile)
+  setRepos(repos)
+  setLoading(false)
+}
+
   return (
     <div className='m-4'>
-      <Search />
+      <Search onSearch={onSearch}/>
       <SortRepo />
       <div className='flex gap-4 flex-col lg:flex-row justify-center items-start'>
       {userProfile && !loading && <ProfileInfo userProfile={userProfile}/>}
-      {repos.length > 0 && !loading && <Repos repos={repos}/>}
+      { !loading && <Repos repos={repos}/>}
         {loading && <Spinner/>}
       </div>
     </div>
   );
 }
 
+// repos.length > 0 &&
 export default HomePage;
