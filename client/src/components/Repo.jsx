@@ -1,6 +1,7 @@
 import { FaCodeBranch, FaCopy, FaRegStar } from "react-icons/fa6";
 import { FaCodeFork } from "react-icons/fa6";
 import { Link } from "react-router-dom"
+import {toast} from 'react-hot-toast';
 
 import { formatDate } from '../utils/function'
 import { PROGRAMMING_LAUNGAGE } from '../utils/constants'
@@ -8,6 +9,15 @@ import { PROGRAMMING_LAUNGAGE } from '../utils/constants'
 
 const Repo = ({repo}) => {
 	const formattedDate = formatDate(repo.created_at)
+
+	const handleClickClone = async(repo) => {
+		try {
+await navigator.clipboard.writeText(repo.clone_url)
+toast.success('Repo URL copied to clipboard')
+		} catch (error) {
+			toast.error('Clipboard copied failed')
+		}
+	}
 
   return (
     <li className='mb-10 ms-7'>
@@ -41,6 +51,7 @@ const Repo = ({repo}) => {
 				<span
 					className='cursor-pointer bg-green-100 text-green-800 text-xs
 					font-medium px-2.5 py-0.5 rounded-full flex items-center gap-1'
+					onClick={()=>handleClickClone(repo)}
 				>
 					<FaCopy /> Clone
 				</span>
