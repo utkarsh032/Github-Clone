@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-
+import { formatDate } from '../utils/function'
 
 import { IoLocationOutline } from "react-icons/io5";
 import { RiGitRepositoryFill, RiUserFollowFill, RiUserFollowLine } from "react-icons/ri";
@@ -8,21 +8,9 @@ import { TfiThought } from "react-icons/tfi";
 import { FaEye } from "react-icons/fa";
 
 
-const ProfileInfo = () => {
-  const userProfile = {
-		avatar_url: "https://cdn-icons-png.flaticon.com/512/6596/6596121.png",
-		bio: "i am Utkarsh Raj",
-		email: "utkarshraj525@gmail.com",
-		followers: 100,
-		following: 200,
-		html_url: "https://github.com/utkarsh032",
-		location: "Somewhere, Earth",
-		name: "Utkarsh Raj",
-		public_gists: 100,
-		public_repos: 100,
-		twitter_username: "UTKARSHRAZ1",
-		login: "utkarshraj032",
-	};
+const ProfileInfo = ({userProfile}) => {
+
+  const formattedDate = formatDate(userProfile?.created_at)
 
   return (
     <div className='lg:w-1/3 w-full flex flex-col gap-2 md:sticky md:top-10'>
@@ -35,11 +23,11 @@ const ProfileInfo = () => {
         {/* View on Github */}
         <div className='flex gap-2 items-center flex-col'>
           <Link
-            to={userProfile.html_url}
-            target='_blank'
-            rel='noreferrer'
-            className='bg-morphism font-medium w-full text-xs p-2 rounded-md cursor-pointer border border-blue-400 flex items-center gap-2'
-          >
+          to={userProfile?.html_url}
+          target='_blank'
+          rel='noreferrer'
+          className='bg-morphism font-medium w-full text-xs p-2 rounded-md cursor-pointer border border-blue-400 flex items-center gap-2'
+        >
             <FaEye size={16} />
             View on Github
           </Link>
@@ -78,7 +66,7 @@ const ProfileInfo = () => {
       {/* Member Since Date */}
       <div className='my-2'>
         <p className='text-gray-600 font-bold text-sm'>Member since</p>
-        <p className=''>21 Sep, 2023</p>
+        <p className=''>{formattedDate}</p>
       </div>
 
       {/* Email Address */}

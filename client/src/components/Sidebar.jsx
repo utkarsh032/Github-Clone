@@ -55,7 +55,6 @@ const authUser = true
         </div>
       )}
         
-
       </nav>
     </aside>
   )
