@@ -50,10 +50,22 @@ const onSearch = async (e,username)=>{
   setLoading(false)
 }
 
+const onSort = (sortType)=>{
+  if(sortType === 'recent'){
+    repos.sort((a,b)=>new Date(b.created_at) - new Date(a.created_at))
+  }else if(sortType === 'starts'){
+    repos.sort((a,b)=> b.stargazers_count = a.stargazers_count)
+  }else if(sortType === 'forks'){
+    repos.sort((a,b)=>b.forks_count -a.forks_count)
+  }
+  setSortTypes(sortType)
+  setRepos([...repos])
+}
+
   return (
     <div className='m-4'>
       <Search onSearch={onSearch}/>
-      <SortRepo />
+      {repos.length > 0 && <SortRepo onSort={onSort} sortType={sortTypes}/>}
       <div className='flex gap-4 flex-col lg:flex-row justify-center items-start'>
       {userProfile && !loading && <ProfileInfo userProfile={userProfile}/>}
       { !loading && <Repos repos={repos}/>}
