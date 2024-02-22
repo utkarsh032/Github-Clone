@@ -11,21 +11,20 @@ const HomePage = () => {
   const [userProfile, setUserProfile] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [sortTypes, setSortTypes] = useState('forks');
+  const [sortTypes, setSortTypes] = useState('recent');
 
   const getUserProfileAndRepos = useCallback(async (username = "utkarsh032") => {
     setLoading(true);
     try {
       const userRes = await fetch(`https://api.github.com/users/${username}`, {
-        headers: { Authorization: `token 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` }
+        headers: { Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}` }
       });
       const userProfile = await userRes.json();
       setUserProfile(userProfile);
       const repoRes = await fetch(userProfile.repos_url);
       const repos = await repoRes.json();
+      repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       setRepos(repos);
-      console.log(userProfile);
-      console.log(repos);
       return { userProfile, repos };
     } catch (error) {
       toast.error('username is not valid');
@@ -50,6 +49,7 @@ const HomePage = () => {
     setUserProfile(userProfile)
     setRepos(repos)
     setLoading(false)
+    setSortTypes('recent')
   }
 
   const onSort = (sortType) => {
@@ -68,14 +68,14 @@ const HomePage = () => {
     <div className='m-4'>
       <Search onSearch={onSearch} />
       {repos.length > 0 && <SortRepo onSort={onSort} sortType={sortTypes} />}
-      <div className='flex gap-4 flex-col lg:flex-row justify-center items-start'>
-        {userProfile && !loading && <ProfileInfo userProfile={userProfile} />}
+      <div className='flex flex-col lg:flex-row justify-center items-start gap-4'>
+        {!loading && userProfile && <ProfileInfo userProfile={userProfile} />}
         {!loading && <Repos repos={repos} />}
         {loading && <Spinner />}
       </div>
     </div>
+
   );
 }
 
-// repos.length > 0 &&
 export default HomePage;

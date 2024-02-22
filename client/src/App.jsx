@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import {Toaster} from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 
 import Sidebar from "./components/Sidebar"
 
