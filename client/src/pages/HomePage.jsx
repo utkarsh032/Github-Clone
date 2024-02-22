@@ -16,7 +16,9 @@ const HomePage = () => {
   const getUserProfileAndRepos = useCallback(async (username = "utkarsh032") => {
     setLoading(true);
     try {
-      const userRes = await fetch(`https://api.github.com/users/${username}`);
+      const userRes = await fetch(`https://api.github.com/users/${username}`, {
+        headers: { Authorization: `token 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` }
+      });
       const userProfile = await userRes.json();
       setUserProfile(userProfile);
       const repoRes = await fetch(userProfile.repos_url);
