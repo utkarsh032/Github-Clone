@@ -1,5 +1,6 @@
 
 const SortRepo = ({ onSort, sortType }) => {
+  console.log(sortType)
   const BUTTONS = [
     { type: 'recent', text: 'Most Recent' },
     { type: 'stars', text: 'Most Stars' },
