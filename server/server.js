@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import userRoute from './routes/userRoute.js'
 import exploreRoute from './routes/exploreRoute.js'
+import connectMongoDB from './db/connectMongoDB.js';
 
 dotenv.config();
 
@@ -19,4 +20,5 @@ app.use('/api/explore', exploreRoute)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  connectMongoDB()
 })
