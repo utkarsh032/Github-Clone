@@ -4,12 +4,12 @@ import cors from 'cors';
 import session from 'express-session'
 import passport from 'passport'
 
-import authRoute from './routes/authenticateRoute.js'
+import authenticateRoute from './routes/authenticateRoute.js'
 import userRoute from './routes/userRoute.js'
 import exploreRoute from './routes/exploreRoute.js'
 import connectMongoDB from './db/connectMongoDB.js';
 
-// import './passport/githubAuth.js'
+import './passport/githubAuth.js'
 
 dotenv.config();
 
@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
   res.send('server is ready')
 })
 
-app.use('/api/auth', authRoute)
+app.use('/api/auth', authenticateRoute)
 app.use('/api/users', userRoute)
 app.use('/api/explore', exploreRoute)
 
