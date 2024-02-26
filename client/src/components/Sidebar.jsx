@@ -7,10 +7,11 @@ import { MdOutlineExplore } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 
 import Logout from './Logout.jsx'
+import { useAuthContext } from "../../context/AuthContext.jsx";
 
 
 const Sidebar = () => {
-  const authUser = true
+  const { authUser } = useAuthContext()
 
   return (
     <aside className="flex flex-col items-center min-w-12 sm:w-16 sticky top-0 left-0 h-screen py-8 overflow-y-auto border-r bg-morphism">
@@ -50,7 +51,7 @@ const Sidebar = () => {
         )}
 
         {authUser && (
-          <div className='flex flex-col gap-2 mt-auto'>
+          <div className='flex flex-col gap-2 mt-auto' title="logout">
             <Logout />
           </div>
         )}
