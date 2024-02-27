@@ -6,6 +6,7 @@ import { RiGitRepositoryFill, RiUserFollowFill, RiUserFollowLine } from "react-i
 import { FaXTwitter } from "react-icons/fa6";
 import { TfiThought } from "react-icons/tfi";
 import { FaEye } from "react-icons/fa";
+import LikeProfile from "./LikeProfile";
 
 
 const ProfileInfo = ({ userProfile }) => {
@@ -22,6 +23,7 @@ const ProfileInfo = ({ userProfile }) => {
           </Link>
           {/* View on Github */}
           <div className='flex gap-2 items-center flex-col'>
+            <LikeProfile userProfile={userProfile} />
             <Link
               to={userProfile?.html_url}
               target='_blank'
