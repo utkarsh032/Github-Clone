@@ -7,7 +7,7 @@
     "server": "nodemon server/server.js",
     "client": "npm run dev --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",
-    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "build":"npm install && npm install --prefix client && npm run build --prefix client"
   },
   "type": "module",
   "author": "",

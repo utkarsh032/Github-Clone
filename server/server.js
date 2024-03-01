@@ -28,11 +28,22 @@ app.use('/api/auth', authenticateRoute)
 app.use('/api/users', userRoute)
 app.use('/api/explore', exploreRoute)
 
-app.use(express.static(path.join(__dirname, "/frontend/dist")))
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))
-})
+//////////////////////////////////////////////////////////////
+// DEPLOY PRODUCTION //
+if (process.env.NODE_ENV === 'production') {
+  // set static folder
+  app.use(express.static(path.join(__dirname, "/client/dist")))
+
+  // any routes that is not api will be redirect to index.html
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', "dist", "index.html"))
+  })
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running')
+  })
+}
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
