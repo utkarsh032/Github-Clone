@@ -88,7 +88,7 @@ npm run dev
 ## Screenshots
 
 ### Dashboard
-![Dashboard](./public/UI.png)
+![Dashboard](.client/public/UI.png)
 
 ## Scripts
 
